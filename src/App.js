@@ -1,11 +1,12 @@
 import { Route, Routes } from 'react-router';
-import Register from './pages/Register';
+import { Register, Login } from './pages';
 
 function App() {
   return (
     <main>
       <Routes>
         <Route path='/' element={<Register />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </main>
   );

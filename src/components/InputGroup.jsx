@@ -17,7 +17,7 @@ const InputGroup = (props) => {
   return (
     <div className={`flex flex-col ${styles}`}>
       <label
-        for={id}
+        htmlFor={id}
         className={`mb-1 block text-sm font-medium leading-5 text-gray-700`}
       >
         {label}

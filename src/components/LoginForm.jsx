@@ -1,20 +1,19 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { InputGroup, Checkbox } from '.';
-import { registerSchema } from '../schema';
+import { InputGroup } from '.';
+import { loginSchema } from '../schema';
+import { Link } from 'react-router-dom';
 
 const initialValues = {
   email: '',
-  confirmEmail: '',
   password: '',
-  terms: false,
 };
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues,
-      validationSchema: registerSchema,
+      validationSchema: loginSchema,
       onSubmit: (values, action) => {
         console.log(
           '🚀 ~ file: RegisterForm.jsx:20 ~ RegisterForm ~ values:',
@@ -23,7 +22,7 @@ const RegisterForm = () => {
         action.resetForm();
       },
     });
-  const { email, confirmEmail, password, terms } = values;
+  const { email, password } = values;
 
   return (
     <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
@@ -41,18 +40,6 @@ const RegisterForm = () => {
             error={errors.email}
           />
           <InputGroup
-            label='repeat email'
-            name='confirmEmail'
-            id='confirmEmail'
-            type='email'
-            touched={touched.confirmEmail}
-            value={confirmEmail}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.confirmEmail}
-            styles='mt-6'
-          />
-          <InputGroup
             label='Password'
             name='password'
             id='password'
@@ -64,20 +51,20 @@ const RegisterForm = () => {
             error={errors.password}
             styles='mt-6'
           />
-          <Checkbox
-            touched={touched.terms}
-            value={terms}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.terms}
-          />
-
+          <div className='mt-2 flex items-center justify-end'>
+            <Link
+              to='/forget-password'
+              className='font-medium text-sm leading-5 text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150'
+            >
+              Forgot password?
+            </Link>
+          </div>
           <div className='mt-6'>
             <button
               type='submit'
               className='w-full flex justify-center cursor-pointer text-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out'
             >
-              create an account
+              To enter
             </button>
           </div>
         </form>
@@ -86,4 +73,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

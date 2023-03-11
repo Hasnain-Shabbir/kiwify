@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const registerUpSchema = Yup.object({
+export const registerSchema = Yup.object({
   email: Yup.string().email().required('This field is mandatory'),
   password: Yup.string().required('This field is mandatory'),
   confirmEmail: Yup.string()
@@ -8,4 +8,9 @@ export const registerUpSchema = Yup.object({
     .required('This field is mandatory')
     .oneOf([Yup.ref('email'), null], 'The two emails must be the same.'),
   terms: Yup.bool().oneOf([true], 'This field is mandatory'),
+});
+
+export const loginSchema = Yup.object({
+  email: Yup.string().email().required('This field is mandatory'),
+  password: Yup.string().required('This field is mandatory'),
 });
